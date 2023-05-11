@@ -1,0 +1,38 @@
+module bcd_circuit(input clk,flg,input[19:0] data,input btnl,btnr,output [11:0]Q);
+
+ reg [27:0] q;
+
+    
+    always @(posedge clk or posedge flg) begin
+      if(flg)
+      q<=28'b0;
+      
+        else 
+        if(!flg&&q==28'b0)begin
+        q[27:8]<=data;
+        q[7:0]<=8'b0;
+        end
+        if(btnl&&btnr)
+        q<=q;
+        else
+        begin 
+        
+        if(btnl) begin 
+        if(q[27:24]!=4'b0) 
+        q<=q;
+         if(q[27:24]==4'b0) 
+        q<={q[23:0],4'b0};
+        
+        if(btnr)
+         if(q[3:0]!=4'b0) 
+        q<=q;
+        if(q[3:0]==4'b0)
+        q<={4'b0,q[27:4]};
+        
+      end
+      
+        end 
+      end
+      assign Q=q[19:8];
+    
+endmodule

@@ -1,0 +1,12 @@
+module synchronizer(clk, rst);
+    input clk, rst;
+
+    always @(posedge clk) begin
+        if (!rst) begin
+            //Reset logic goes here.
+        end
+        else begin
+            //Sequential logic goes here.
+        end
+    end
+endmodule
