@@ -1,0 +1,19 @@
+module Shift_left(clk, en, load , sinl, d,q);
+  input clk;
+  input en;
+  input load;
+  input sinl; //serial input for shift left
+  input [3:0] d;
+  output[3:0] q;
+  reg [3:0] q;
+  
+  always @(posedge clk) begin
+    case({load,en})
+      2'b00: q <= q;
+      2'b01: q <= {q[2:0], sinl};
+      2'b10: q <= d;
+      2'b11: q <= d;
+    endcase
+  end
+  
+endmodule
