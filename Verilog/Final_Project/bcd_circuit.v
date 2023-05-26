@@ -33,7 +33,7 @@ output [11:0]Q
 
    
     always @(posedge clk or posedge flg) begin
-      if(flg)
+     if(flg || data==20'b0)
          q<=28'b0;
      
       else begin
