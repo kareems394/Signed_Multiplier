@@ -32,7 +32,8 @@ output reg sf
         end
         else begin 
             if(outregR != 8'b0)begin
-                sf <= (A[7] ^ B[7]);
+                if(A!=8'b0 && B!=8'b0)
+                    sf <= (A[7] ^ B[7]);
                 z_flag <=1'b1;
                 outregL <= outregL <<1;
                 outregR <= outregR >>1;
